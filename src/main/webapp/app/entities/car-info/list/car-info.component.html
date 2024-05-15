@@ -1,0 +1,218 @@
+<div>
+  <h2 id="page-heading" data-cy="CarInfoHeading">
+    <span>Car Infos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-car-info"
+        [routerLink]="['/car-info/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Car Info </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="carInfos?.length === 0">
+    <span>No Car Infos found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="carInfos && carInfos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="chassisNumber">
+            <div class="d-flex">
+              <span>Chassis Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="licensePlateNumber">
+            <div class="d-flex">
+              <span>License Plate Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="brand">
+            <div class="d-flex">
+              <span>Brand</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="purchaseDate">
+            <div class="d-flex">
+              <span>Purchase Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="golanFlagValidity">
+            <div class="d-flex">
+              <span>Golan Flag Validity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="vehicleTaxValidityDate">
+            <div class="d-flex">
+              <span>Vehicle Tax Validity Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="originalInServiceDate">
+            <div class="d-flex">
+              <span>Original In Service Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="category">
+            <div class="d-flex">
+              <span>Category</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="insuranceValidityDate">
+            <div class="d-flex">
+              <span>Insurance Validity Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="technicalInspection">
+            <div class="d-flex">
+              <span>Technical Inspection</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="firstOwner">
+            <div class="d-flex">
+              <span>First Owner</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="firstOwnerID">
+            <div class="d-flex">
+              <span>First Owner ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="ownersID">
+            <div class="d-flex">
+              <span>Owners ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <div class="d-flex">
+              <span>Photo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="wanted">
+            <div class="d-flex">
+              <span>Wanted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="personInfo.id">
+            <div class="d-flex">
+              <span>Person Info</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let carInfo of carInfos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/car-info', carInfo.id, 'view']">{{ carInfo.id }}</a>
+          </td>
+          <td>{{ carInfo.chassisNumber }}</td>
+          <td>{{ carInfo.licensePlateNumber }}</td>
+          <td>{{ carInfo.brand }}</td>
+          <td>{{ carInfo.purchaseDate | formatMediumDate }}</td>
+          <td>{{ carInfo.golanFlagValidity }}</td>
+          <td>{{ carInfo.vehicleTaxValidityDate | formatMediumDate }}</td>
+          <td>{{ carInfo.originalInServiceDate | formatMediumDate }}</td>
+          <td>{{ carInfo.category }}</td>
+          <td>{{ carInfo.insuranceValidityDate | formatMediumDate }}</td>
+          <td>{{ carInfo.technicalInspection }}</td>
+          <td>{{ carInfo.firstOwner }}</td>
+          <td>{{ carInfo.firstOwnerID }}</td>
+          <td>{{ carInfo.ownersID }}</td>
+          <td>
+            <a *ngIf="carInfo.photo" (click)="openFile(carInfo.photo, carInfo.photoContentType)">Open</a>
+            <span *ngIf="carInfo.photo">{{ carInfo.photoContentType }}, {{ byteSize(carInfo.photo) }}</span>
+          </td>
+          <td>{{ carInfo.wanted }}</td>
+          <td>
+            <div *ngIf="carInfo.personInfo">
+              <a [routerLink]="['/person-info', carInfo.personInfo.id, 'view']">{{ carInfo.personInfo.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/car-info', carInfo.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/car-info', carInfo.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(carInfo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="carInfos && carInfos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

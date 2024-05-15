@@ -1,0 +1,244 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-car-info-heading" data-cy="CarInfoCreateUpdateHeading">Create or edit a Car Info</h2>
+
+      <div class="row">
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3 col-md-6" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_chassisNumber">Chassis Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="chassisNumber"
+            id="field_chassisNumber"
+            data-cy="chassisNumber"
+            formControlName="chassisNumber"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_licensePlateNumber">License Plate Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="licensePlateNumber"
+            id="field_licensePlateNumber"
+            data-cy="licensePlateNumber"
+            formControlName="licensePlateNumber"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_brand">Brand</label>
+          <input type="text" class="form-control" name="brand" id="field_brand" data-cy="brand" formControlName="brand" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_purchaseDate">Purchase Date</label>
+          <div class="input-group">
+            <input
+              id="field_purchaseDate"
+              data-cy="purchaseDate"
+              type="text"
+              class="form-control"
+              name="purchaseDate"
+              ngbDatepicker
+              #purchaseDateDp="ngbDatepicker"
+              formControlName="purchaseDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="purchaseDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_golanFlagValidity">Golan Flag Validity</label>
+          <input
+            type="text"
+            class="form-control"
+            name="golanFlagValidity"
+            id="field_golanFlagValidity"
+            data-cy="golanFlagValidity"
+            formControlName="golanFlagValidity"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_vehicleTaxValidityDate">Vehicle Tax Validity Date</label>
+          <div class="input-group">
+            <input
+              id="field_vehicleTaxValidityDate"
+              data-cy="vehicleTaxValidityDate"
+              type="text"
+              class="form-control"
+              name="vehicleTaxValidityDate"
+              ngbDatepicker
+              #vehicleTaxValidityDateDp="ngbDatepicker"
+              formControlName="vehicleTaxValidityDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="vehicleTaxValidityDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_originalInServiceDate">Original In Service Date</label>
+          <div class="input-group">
+            <input
+              id="field_originalInServiceDate"
+              data-cy="originalInServiceDate"
+              type="text"
+              class="form-control"
+              name="originalInServiceDate"
+              ngbDatepicker
+              #originalInServiceDateDp="ngbDatepicker"
+              formControlName="originalInServiceDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="originalInServiceDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_category">Category</label>
+          <input type="text" class="form-control" name="category" id="field_category" data-cy="category" formControlName="category" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_insuranceValidityDate">Insurance Validity Date</label>
+          <div class="input-group">
+            <input
+              id="field_insuranceValidityDate"
+              data-cy="insuranceValidityDate"
+              type="text"
+              class="form-control"
+              name="insuranceValidityDate"
+              ngbDatepicker
+              #insuranceValidityDateDp="ngbDatepicker"
+              formControlName="insuranceValidityDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="insuranceValidityDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_technicalInspection">Technical Inspection</label>
+          <input
+            type="text"
+            class="form-control"
+            name="technicalInspection"
+            id="field_technicalInspection"
+            data-cy="technicalInspection"
+            formControlName="technicalInspection"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_firstOwner">First Owner</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstOwner"
+            id="field_firstOwner"
+            data-cy="firstOwner"
+            formControlName="firstOwner"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_firstOwnerID">First Owner ID</label>
+          <input
+            type="text"
+            class="form-control"
+            name="firstOwnerID"
+            id="field_firstOwnerID"
+            data-cy="firstOwnerID"
+            formControlName="firstOwnerID"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_ownersID">Owners ID</label>
+          <input type="text" class="form-control" name="ownersID" id="field_ownersID" data-cy="ownersID" formControlName="ownersID" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_photo">Photo</label>
+          <div>
+            <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+              <a class="pull-start" (click)="openFile(editForm.get('photo')!.value!, editForm.get('photoContentType')!.value!)">Open</a
+              ><br />
+              <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value!) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ photo: undefined, photoContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', false)" />
+          </div>
+          <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoContentType"
+            id="field_photoContentType"
+            formControlName="photoContentType"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_wanted">Wanted</label>
+          <input type="checkbox" class="form-check" name="wanted" id="field_wanted" data-cy="wanted" formControlName="wanted" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_personInfo">Person Info</label>
+          <select
+            class="form-control"
+            id="field_personInfo"
+            data-cy="personInfo"
+            name="personInfo"
+            formControlName="personInfo"
+            [compareWith]="comparePersonInfo"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="personInfoOption" *ngFor="let personInfoOption of personInfosSharedCollection">
+              {{ personInfoOption.nationalID }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

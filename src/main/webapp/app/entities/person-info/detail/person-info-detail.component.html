@@ -1,0 +1,95 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="personInfo">
+      <h2 data-cy="personInfoDetailsHeading"><span>Person Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ personInfo.id }}</span>
+        </dd>
+        <dt><span>National ID</span></dt>
+        <dd>
+          <span>{{ personInfo.nationalID }}</span>
+        </dd>
+        <dt><span>Identity Type</span></dt>
+        <dd>
+          <span>{{ personInfo.identityType }}</span>
+        </dd>
+        <dt><span>Passport ID</span></dt>
+        <dd>
+          <span>{{ personInfo.passportID }}</span>
+        </dd>
+        <dt><span>Drive Licence ID</span></dt>
+        <dd>
+          <span>{{ personInfo.driveLicenceID }}</span>
+        </dd>
+        <dt><span>Drive Licence Type</span></dt>
+        <dd>
+          <span>{{ personInfo.driveLicenceType }}</span>
+        </dd>
+        <dt><span>First Name</span></dt>
+        <dd>
+          <span>{{ personInfo.firstName }}</span>
+        </dd>
+        <dt><span>Last Name</span></dt>
+        <dd>
+          <span>{{ personInfo.lastName }}</span>
+        </dd>
+        <dt><span>National Id Issue Date</span></dt>
+        <dd>
+          <span>{{ personInfo.nationalIdIssueDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Birth Date</span></dt>
+        <dd>
+          <span>{{ personInfo.birthDate }}</span>
+        </dd>
+        <dt><span>Passport Issue Date</span></dt>
+        <dd>
+          <span>{{ personInfo.passportIssueDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Drive Licence Issue Date</span></dt>
+        <dd>
+          <span>{{ personInfo.driveLicenceIssueDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Job</span></dt>
+        <dd>
+          <span>{{ personInfo.job }}</span>
+        </dd>
+        <dt><span>Fathers First Name</span></dt>
+        <dd>
+          <span>{{ personInfo.fathersFirstName }}</span>
+        </dd>
+        <dt><span>Mother First Name</span></dt>
+        <dd>
+          <span>{{ personInfo.motherFirstName }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="personInfo.photo">
+            <a (click)="openFile(personInfo.photo, personInfo.photoContentType)">Open</a>
+            {{ personInfo.photoContentType }}, {{ byteSize(personInfo.photo) }}
+          </div>
+        </dd>
+        <dt><span>Wanted</span></dt>
+        <dd>
+          <span>{{ personInfo.wanted }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/person-info', personInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

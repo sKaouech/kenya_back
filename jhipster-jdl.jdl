@@ -1,38 +1,42 @@
 entity PersonInfo {
-	nationalID String
-	identityType String
-	passportID String
-	driveLicenceID String
-	driveLicenceType String	
-	firstName String
+    nationalID String
+    identityType String
+    passportID String
+    driveLicenceID String
+    driveLicenceType String
+    firstName String
     lastName String
-    nationalIdIssueDate String
-	birthDate String
-    passportIssueDate String
-    driveLicenceIssueDate String
+    nationalIdIssueDate LocalDate
+    birthDate String
+    passportIssueDate LocalDate
+    driveLicenceIssueDate LocalDate
     job String
     fathersFirstName String
     motherFirstName String
+    photo Blob
+    wanted Boolean
 
 }
 entity CarInfo {
-	chassisNumber String
-	licensePlateNumber String
-	brand String
-	purchaseDate String
-	golanFlagValidity String	
-	vehicleTaxValidityDate String
-    originalInServiceDate String
+    chassisNumber String
+    licensePlateNumber String
+    brand String
+    purchaseDate LocalDate
+    golanFlagValidity String
+    vehicleTaxValidityDate LocalDate
+    originalInServiceDate LocalDate
     category String
-	insuranceValidityDate String
+    insuranceValidityDate LocalDate
     technicalInspection String
     firstOwner String
     firstOwnerID String
     ownersID String
+    photo Blob
+    wanted Boolean
 }
 
 relationship ManyToOne {
-	CarInfo{carInfo} to PersonInfo
+    CarInfo{personInfo} to PersonInfo
 }
 
 // Set pagination options

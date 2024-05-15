@@ -1,0 +1,83 @@
+{
+  "applications": "*",
+  "changelogDate": "20240515161915",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "car_info",
+  "fields": [
+    {
+      "fieldName": "chassisNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "licensePlateNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "brand",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "purchaseDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "golanFlagValidity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "vehicleTaxValidityDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "originalInServiceDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "category",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "insuranceValidityDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "technicalInspection",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "firstOwner",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "firstOwnerID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ownersID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "wanted",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CarInfo",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "personInfo",
+      "relationshipName": "personInfo",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

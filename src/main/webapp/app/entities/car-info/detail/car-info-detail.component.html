@@ -1,0 +1,97 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="carInfo">
+      <h2 data-cy="carInfoDetailsHeading"><span>Car Info</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ carInfo.id }}</span>
+        </dd>
+        <dt><span>Chassis Number</span></dt>
+        <dd>
+          <span>{{ carInfo.chassisNumber }}</span>
+        </dd>
+        <dt><span>License Plate Number</span></dt>
+        <dd>
+          <span>{{ carInfo.licensePlateNumber }}</span>
+        </dd>
+        <dt><span>Brand</span></dt>
+        <dd>
+          <span>{{ carInfo.brand }}</span>
+        </dd>
+        <dt><span>Purchase Date</span></dt>
+        <dd>
+          <span>{{ carInfo.purchaseDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Golan Flag Validity</span></dt>
+        <dd>
+          <span>{{ carInfo.golanFlagValidity }}</span>
+        </dd>
+        <dt><span>Vehicle Tax Validity Date</span></dt>
+        <dd>
+          <span>{{ carInfo.vehicleTaxValidityDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Original In Service Date</span></dt>
+        <dd>
+          <span>{{ carInfo.originalInServiceDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+          <span>{{ carInfo.category }}</span>
+        </dd>
+        <dt><span>Insurance Validity Date</span></dt>
+        <dd>
+          <span>{{ carInfo.insuranceValidityDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Technical Inspection</span></dt>
+        <dd>
+          <span>{{ carInfo.technicalInspection }}</span>
+        </dd>
+        <dt><span>First Owner</span></dt>
+        <dd>
+          <span>{{ carInfo.firstOwner }}</span>
+        </dd>
+        <dt><span>First Owner ID</span></dt>
+        <dd>
+          <span>{{ carInfo.firstOwnerID }}</span>
+        </dd>
+        <dt><span>Owners ID</span></dt>
+        <dd>
+          <span>{{ carInfo.ownersID }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="carInfo.photo">
+            <a (click)="openFile(carInfo.photo, carInfo.photoContentType)">Open</a>
+            {{ carInfo.photoContentType }}, {{ byteSize(carInfo.photo) }}
+          </div>
+        </dd>
+        <dt><span>Wanted</span></dt>
+        <dd>
+          <span>{{ carInfo.wanted }}</span>
+        </dd>
+        <dt><span>Person Info</span></dt>
+        <dd>
+          <div *ngIf="carInfo.personInfo">
+            <a [routerLink]="['/person-info', carInfo.personInfo.id, 'view']">{{ carInfo.personInfo.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/car-info', carInfo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

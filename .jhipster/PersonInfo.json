@@ -1,0 +1,81 @@
+{
+  "applications": "*",
+  "changelogDate": "20240515161914",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "person_info",
+  "fields": [
+    {
+      "fieldName": "nationalID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "identityType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "passportID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "driveLicenceID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "driveLicenceType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalIdIssueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "passportIssueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "driveLicenceIssueDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "job",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fathersFirstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "motherFirstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "wanted",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PersonInfo",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

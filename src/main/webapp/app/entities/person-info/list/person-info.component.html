@@ -1,0 +1,214 @@
+<div>
+  <h2 id="page-heading" data-cy="PersonInfoHeading">
+    <span>Person Infos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-person-info"
+        [routerLink]="['/person-info/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Person Info </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="personInfos?.length === 0">
+    <span>No Person Infos found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="personInfos && personInfos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nationalID">
+            <div class="d-flex">
+              <span>National ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="identityType">
+            <div class="d-flex">
+              <span>Identity Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="passportID">
+            <div class="d-flex">
+              <span>Passport ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="driveLicenceID">
+            <div class="d-flex">
+              <span>Drive Licence ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="driveLicenceType">
+            <div class="d-flex">
+              <span>Drive Licence Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="firstName">
+            <div class="d-flex">
+              <span>First Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastName">
+            <div class="d-flex">
+              <span>Last Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nationalIdIssueDate">
+            <div class="d-flex">
+              <span>National Id Issue Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="birthDate">
+            <div class="d-flex">
+              <span>Birth Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="passportIssueDate">
+            <div class="d-flex">
+              <span>Passport Issue Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="driveLicenceIssueDate">
+            <div class="d-flex">
+              <span>Drive Licence Issue Date</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="job">
+            <div class="d-flex">
+              <span>Job</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="fathersFirstName">
+            <div class="d-flex">
+              <span>Fathers First Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="motherFirstName">
+            <div class="d-flex">
+              <span>Mother First Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="photo">
+            <div class="d-flex">
+              <span>Photo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="wanted">
+            <div class="d-flex">
+              <span>Wanted</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let personInfo of personInfos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/person-info', personInfo.id, 'view']">{{ personInfo.id }}</a>
+          </td>
+          <td>{{ personInfo.nationalID }}</td>
+          <td>{{ personInfo.identityType }}</td>
+          <td>{{ personInfo.passportID }}</td>
+          <td>{{ personInfo.driveLicenceID }}</td>
+          <td>{{ personInfo.driveLicenceType }}</td>
+          <td>{{ personInfo.firstName }}</td>
+          <td>{{ personInfo.lastName }}</td>
+          <td>{{ personInfo.nationalIdIssueDate | formatMediumDate }}</td>
+          <td>{{ personInfo.birthDate }}</td>
+          <td>{{ personInfo.passportIssueDate | formatMediumDate }}</td>
+          <td>{{ personInfo.driveLicenceIssueDate | formatMediumDate }}</td>
+          <td>{{ personInfo.job }}</td>
+          <td>{{ personInfo.fathersFirstName }}</td>
+          <td>{{ personInfo.motherFirstName }}</td>
+          <td>
+            <a *ngIf="personInfo.photo" (click)="openFile(personInfo.photo, personInfo.photoContentType)">Open</a>
+            <span *ngIf="personInfo.photo">{{ personInfo.photoContentType }}, {{ byteSize(personInfo.photo) }}</span>
+          </td>
+          <td>{{ personInfo.wanted }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/person-info', personInfo.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/person-info', personInfo.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(personInfo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="personInfos && personInfos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

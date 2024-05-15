@@ -1,0 +1,225 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-person-info-heading" data-cy="PersonInfoCreateUpdateHeading">Create or edit a Person Info</h2>
+
+      <div class="row">
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3 col-md-6" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_nationalID">National ID</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nationalID"
+            id="field_nationalID"
+            data-cy="nationalID"
+            formControlName="nationalID"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_identityType">Identity Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="identityType"
+            id="field_identityType"
+            data-cy="identityType"
+            formControlName="identityType"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_passportID">Passport ID</label>
+          <input
+            type="text"
+            class="form-control"
+            name="passportID"
+            id="field_passportID"
+            data-cy="passportID"
+            formControlName="passportID"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_driveLicenceID">Drive Licence ID</label>
+          <input
+            type="text"
+            class="form-control"
+            name="driveLicenceID"
+            id="field_driveLicenceID"
+            data-cy="driveLicenceID"
+            formControlName="driveLicenceID"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_driveLicenceType">Drive Licence Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="driveLicenceType"
+            id="field_driveLicenceType"
+            data-cy="driveLicenceType"
+            formControlName="driveLicenceType"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_nationalIdIssueDate">National Id Issue Date</label>
+          <div class="input-group">
+            <input
+              id="field_nationalIdIssueDate"
+              data-cy="nationalIdIssueDate"
+              type="text"
+              class="form-control"
+              name="nationalIdIssueDate"
+              ngbDatepicker
+              #nationalIdIssueDateDp="ngbDatepicker"
+              formControlName="nationalIdIssueDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="nationalIdIssueDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_birthDate">Birth Date</label>
+          <input type="text" class="form-control" name="birthDate" id="field_birthDate" data-cy="birthDate" formControlName="birthDate" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_passportIssueDate">Passport Issue Date</label>
+          <div class="input-group">
+            <input
+              id="field_passportIssueDate"
+              data-cy="passportIssueDate"
+              type="text"
+              class="form-control"
+              name="passportIssueDate"
+              ngbDatepicker
+              #passportIssueDateDp="ngbDatepicker"
+              formControlName="passportIssueDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="passportIssueDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_driveLicenceIssueDate">Drive Licence Issue Date</label>
+          <div class="input-group">
+            <input
+              id="field_driveLicenceIssueDate"
+              data-cy="driveLicenceIssueDate"
+              type="text"
+              class="form-control"
+              name="driveLicenceIssueDate"
+              ngbDatepicker
+              #driveLicenceIssueDateDp="ngbDatepicker"
+              formControlName="driveLicenceIssueDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="driveLicenceIssueDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_job">Job</label>
+          <input type="text" class="form-control" name="job" id="field_job" data-cy="job" formControlName="job" />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_fathersFirstName">Fathers First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fathersFirstName"
+            id="field_fathersFirstName"
+            data-cy="fathersFirstName"
+            formControlName="fathersFirstName"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_motherFirstName">Mother First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motherFirstName"
+            id="field_motherFirstName"
+            data-cy="motherFirstName"
+            formControlName="motherFirstName"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_photo">Photo</label>
+          <div>
+            <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+              <a class="pull-start" (click)="openFile(editForm.get('photo')!.value!, editForm.get('photoContentType')!.value!)">Open</a
+              ><br />
+              <span class="pull-start">{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value!) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ photo: undefined, photoContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_photo" data-cy="photo" (change)="setFileData($event, 'photo', false)" />
+          </div>
+          <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="photoContentType"
+            id="field_photoContentType"
+            formControlName="photoContentType"
+          />
+        </div>
+
+        <div class="row mb-3 col-md-6">
+          <label class="form-label" for="field_wanted">Wanted</label>
+          <input type="checkbox" class="form-check" name="wanted" id="field_wanted" data-cy="wanted" formControlName="wanted" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
