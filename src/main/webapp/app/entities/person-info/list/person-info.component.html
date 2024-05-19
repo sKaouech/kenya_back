@@ -158,7 +158,7 @@
           <td>{{ personInfo.motherFirstName }}</td>
           <td>
             <a *ngIf="personInfo.photo" (click)="openFile(personInfo.photo, personInfo.photoContentType)">Open</a>
-            <span *ngIf="personInfo.photo">{{ personInfo.photoContentType }}, {{ byteSize(personInfo.photo) }}</span>
+            <!--            <span *ngIf="personInfo.photo">{{ personInfo.photoContentType }}, {{ byteSize(personInfo.photo) }}</span>-->
           </td>
           <td>{{ personInfo.wanted }}</td>
           <td class="text-end">

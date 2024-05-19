@@ -164,7 +164,7 @@
           <td>{{ carInfo.ownersName }}</td>
           <td>
             <a *ngIf="carInfo.photo" (click)="openFile(carInfo.photo, carInfo.photoContentType)">Open</a>
-            <span *ngIf="carInfo.photo">{{ carInfo.photoContentType }}, {{ byteSize(carInfo.photo) }}</span>
+            <!--            <span *ngIf="carInfo.photo">{{ carInfo.photoContentType }}, {{ byteSize(carInfo.photo) }}</span>-->
           </td>
           <td>{{ carInfo.wanted }}</td>
           <td>
