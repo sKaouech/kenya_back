@@ -34,6 +34,7 @@ type PersonInfoFormGroupContent = {
   motherFirstName: FormControl<IPersonInfo['motherFirstName']>;
   photo: FormControl<IPersonInfo['photo']>;
   photoContentType: FormControl<IPersonInfo['photoContentType']>;
+  address: FormControl<IPersonInfo['address']>;
   wanted: FormControl<IPersonInfo['wanted']>;
 };
 
@@ -70,6 +71,7 @@ export class PersonInfoFormService {
       motherFirstName: new FormControl(personInfoRawValue.motherFirstName),
       photo: new FormControl(personInfoRawValue.photo),
       photoContentType: new FormControl(personInfoRawValue.photoContentType),
+      address: new FormControl(personInfoRawValue.address),
       wanted: new FormControl(personInfoRawValue.wanted),
     });
   }

@@ -31,6 +31,7 @@ type CarInfoFormGroupContent = {
   firstOwner: FormControl<ICarInfo['firstOwner']>;
   firstOwnerID: FormControl<ICarInfo['firstOwnerID']>;
   ownersID: FormControl<ICarInfo['ownersID']>;
+  ownersName: FormControl<ICarInfo['ownersName']>;
   photo: FormControl<ICarInfo['photo']>;
   photoContentType: FormControl<ICarInfo['photoContentType']>;
   wanted: FormControl<ICarInfo['wanted']>;
@@ -67,6 +68,7 @@ export class CarInfoFormService {
       firstOwner: new FormControl(carInfoRawValue.firstOwner),
       firstOwnerID: new FormControl(carInfoRawValue.firstOwnerID),
       ownersID: new FormControl(carInfoRawValue.ownersID),
+      ownersName: new FormControl(carInfoRawValue.ownersName),
       photo: new FormControl(carInfoRawValue.photo),
       photoContentType: new FormControl(carInfoRawValue.photoContentType),
       wanted: new FormControl(carInfoRawValue.wanted),

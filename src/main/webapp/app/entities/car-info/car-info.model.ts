@@ -16,6 +16,7 @@ export interface ICarInfo {
   firstOwner?: string | null;
   firstOwnerID?: string | null;
   ownersID?: string | null;
+  ownersName?: string | null;
   photo?: string | null;
   photoContentType?: string | null;
   wanted?: boolean | null;

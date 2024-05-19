@@ -1,7 +1,10 @@
 package com.mycompany.myapp.web.rest;
 
+import com.mycompany.myapp.domain.CarInfo;
 import com.mycompany.myapp.domain.PersonInfo;
+import com.mycompany.myapp.repository.CarInfoRepository;
 import com.mycompany.myapp.repository.PersonInfoRepository;
+import com.mycompany.myapp.service.dto.PersonInfoDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +41,11 @@ public class PersonInfoResource {
     private String applicationName;
 
     private final PersonInfoRepository personInfoRepository;
+    private final CarInfoRepository carInfoRepository;
 
-    public PersonInfoResource(PersonInfoRepository personInfoRepository) {
+    public PersonInfoResource(PersonInfoRepository personInfoRepository, CarInfoRepository carInfoRepository) {
         this.personInfoRepository = personInfoRepository;
+        this.carInfoRepository = carInfoRepository;
     }
 
     /**
@@ -67,7 +71,7 @@ public class PersonInfoResource {
     /**
      * {@code PUT  /person-infos/:id} : Updates an existing personInfo.
      *
-     * @param id the id of the personInfo to save.
+     * @param id         the id of the personInfo to save.
      * @param personInfo the personInfo to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated personInfo,
      * or with status {@code 400 (Bad Request)} if the personInfo is not valid,
@@ -101,7 +105,7 @@ public class PersonInfoResource {
     /**
      * {@code PATCH  /person-infos/:id} : Partial updates given fields of an existing personInfo, field will ignore if it is null
      *
-     * @param id the id of the personInfo to save.
+     * @param id         the id of the personInfo to save.
      * @param personInfo the personInfo to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated personInfo,
      * or with status {@code 400 (Bad Request)} if the personInfo is not valid,
@@ -171,6 +175,9 @@ public class PersonInfoResource {
                 if (personInfo.getMotherFirstName() != null) {
                     existingPersonInfo.setMotherFirstName(personInfo.getMotherFirstName());
                 }
+                if (personInfo.getAddress() != null) {
+                    existingPersonInfo.setAddress(personInfo.getAddress());
+                }
                 if (personInfo.getPhoto() != null) {
                     existingPersonInfo.setPhoto(personInfo.getPhoto());
                 }
@@ -216,6 +223,39 @@ public class PersonInfoResource {
         log.debug("REST request to get PersonInfo : {}", id);
         Optional<PersonInfo> personInfo = personInfoRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(personInfo);
+    }
+
+    @GetMapping("/person-infos/nationalID/{id}")
+    public ResponseEntity<PersonInfoDTO> getPersonInfoByNationalID(@PathVariable String id) {
+        log.debug("REST request to get PersonInfo : {}", id);
+        Optional<PersonInfo> personInfo = personInfoRepository.findByNationalID(id);
+        if (personInfo.isPresent()) {
+            PersonInfo personInfo1 = personInfo.get();
+            PersonInfoDTO personInfoDTO = new PersonInfoDTO();
+            personInfoDTO.setAddress(personInfo1.getAddress());
+            personInfoDTO.setId(personInfo1.getId());
+            personInfoDTO.setCarInfos(carInfoRepository.findAllByPerson(id));
+            personInfoDTO.setNationalID(personInfo1.getNationalID());
+            personInfoDTO.setBirthDate(personInfo1.getBirthDate());
+            personInfoDTO.setIdentityType(personInfo1.getIdentityType());
+            personInfoDTO.setJob(personInfo1.getJob());
+            personInfoDTO.setLastName(personInfo1.getLastName());
+            personInfoDTO.setFirstName(personInfo1.getFirstName());
+            personInfoDTO.setPassportID(personInfo1.getPassportID());
+            personInfoDTO.setDriveLicenceID(personInfo1.getDriveLicenceID());
+            personInfoDTO.setDriveLicenceIssueDate(personInfo1.getDriveLicenceIssueDate());
+            personInfoDTO.setDriveLicenceType(personInfo1.getDriveLicenceType());
+            personInfoDTO.setFathersFirstName(personInfo1.getFathersFirstName());
+            personInfoDTO.setMotherFirstName(personInfo1.getMotherFirstName());
+            personInfoDTO.setNationalIdIssueDate(personInfo1.getNationalIdIssueDate());
+            personInfoDTO.setPassportIssueDate(personInfo1.getPassportIssueDate());
+            personInfoDTO.setPhoto(personInfo1.getPhoto());
+            personInfoDTO.setPhotoContentType(personInfo1.getPhotoContentType());
+            personInfoDTO.setWanted(personInfo1.getWanted());
+            return ResponseEntity.ok(personInfoDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /**

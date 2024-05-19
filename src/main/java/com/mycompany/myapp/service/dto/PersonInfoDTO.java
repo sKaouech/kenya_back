@@ -1,9 +1,8 @@
-package com.mycompany.myapp.domain;
+package com.mycompany.myapp.service.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.mycompany.myapp.domain.CarInfo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,88 +10,53 @@ import java.util.List;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  * A PersonInfo.
  */
-@Entity
-@Table(name = "person_info")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class PersonInfo implements Serializable {
+public class PersonInfoDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "national_id")
     private String nationalID;
 
-    @Column(name = "identity_type")
     private String identityType;
 
-    @Column(name = "passport_id")
     private String passportID;
 
-    @Column(name = "drive_licence_id")
     private String driveLicenceID;
 
-    @Column(name = "drive_licence_type")
     private String driveLicenceType;
 
-    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "national_id_issue_date")
     private LocalDate nationalIdIssueDate;
 
-    @Column(name = "birth_date")
     private String birthDate;
 
-    @Column(name = "passport_issue_date")
     private LocalDate passportIssueDate;
 
-    @Column(name = "drive_licence_issue_date")
     private LocalDate driveLicenceIssueDate;
 
-    @Column(name = "job")
     private String job;
 
-    @Column(name = "fathers_first_name")
     private String fathersFirstName;
 
-    @Column(name = "mother_first_name")
     private String motherFirstName;
 
-    @Lob
-    @Column(name = "photo")
     private byte[] photo;
 
-    @Column(name = "photo_content_type")
     private String photoContentType;
 
-    @Column(name = "adress")
     private String address;
 
-    @Column(name = "wanted")
     private Boolean wanted;
 
-    //    @Fetch(value = FetchMode.JOIN)
-    //    @OneToMany(mappedBy = "personInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    //    @JsonIgnoreProperties({ "personInfo" })
-    @Transient
-    @JsonProperty
-    @JsonIgnoreProperties({ "personInfo" })
     private List<CarInfo> carInfos = new ArrayList<>();
 
     public List<CarInfo> getCarInfos() {
@@ -107,7 +71,7 @@ public class PersonInfo implements Serializable {
         return this.id;
     }
 
-    public PersonInfo id(Long id) {
+    public PersonInfoDTO id(Long id) {
         this.setId(id);
         return this;
     }
@@ -120,7 +84,7 @@ public class PersonInfo implements Serializable {
         return this.nationalID;
     }
 
-    public PersonInfo nationalID(String nationalID) {
+    public PersonInfoDTO nationalID(String nationalID) {
         this.setNationalID(nationalID);
         return this;
     }
@@ -141,7 +105,7 @@ public class PersonInfo implements Serializable {
         return this.identityType;
     }
 
-    public PersonInfo identityType(String identityType) {
+    public PersonInfoDTO identityType(String identityType) {
         this.setIdentityType(identityType);
         return this;
     }
@@ -154,7 +118,7 @@ public class PersonInfo implements Serializable {
         return this.passportID;
     }
 
-    public PersonInfo passportID(String passportID) {
+    public PersonInfoDTO passportID(String passportID) {
         this.setPassportID(passportID);
         return this;
     }
@@ -167,7 +131,7 @@ public class PersonInfo implements Serializable {
         return this.driveLicenceID;
     }
 
-    public PersonInfo driveLicenceID(String driveLicenceID) {
+    public PersonInfoDTO driveLicenceID(String driveLicenceID) {
         this.setDriveLicenceID(driveLicenceID);
         return this;
     }
@@ -180,7 +144,7 @@ public class PersonInfo implements Serializable {
         return this.driveLicenceType;
     }
 
-    public PersonInfo driveLicenceType(String driveLicenceType) {
+    public PersonInfoDTO driveLicenceType(String driveLicenceType) {
         this.setDriveLicenceType(driveLicenceType);
         return this;
     }
@@ -193,7 +157,7 @@ public class PersonInfo implements Serializable {
         return this.firstName;
     }
 
-    public PersonInfo firstName(String firstName) {
+    public PersonInfoDTO firstName(String firstName) {
         this.setFirstName(firstName);
         return this;
     }
@@ -206,7 +170,7 @@ public class PersonInfo implements Serializable {
         return this.lastName;
     }
 
-    public PersonInfo lastName(String lastName) {
+    public PersonInfoDTO lastName(String lastName) {
         this.setLastName(lastName);
         return this;
     }
@@ -219,7 +183,7 @@ public class PersonInfo implements Serializable {
         return this.nationalIdIssueDate;
     }
 
-    public PersonInfo nationalIdIssueDate(LocalDate nationalIdIssueDate) {
+    public PersonInfoDTO nationalIdIssueDate(LocalDate nationalIdIssueDate) {
         this.setNationalIdIssueDate(nationalIdIssueDate);
         return this;
     }
@@ -232,7 +196,7 @@ public class PersonInfo implements Serializable {
         return this.birthDate;
     }
 
-    public PersonInfo birthDate(String birthDate) {
+    public PersonInfoDTO birthDate(String birthDate) {
         this.setBirthDate(birthDate);
         return this;
     }
@@ -245,7 +209,7 @@ public class PersonInfo implements Serializable {
         return this.passportIssueDate;
     }
 
-    public PersonInfo passportIssueDate(LocalDate passportIssueDate) {
+    public PersonInfoDTO passportIssueDate(LocalDate passportIssueDate) {
         this.setPassportIssueDate(passportIssueDate);
         return this;
     }
@@ -258,7 +222,7 @@ public class PersonInfo implements Serializable {
         return this.driveLicenceIssueDate;
     }
 
-    public PersonInfo driveLicenceIssueDate(LocalDate driveLicenceIssueDate) {
+    public PersonInfoDTO driveLicenceIssueDate(LocalDate driveLicenceIssueDate) {
         this.setDriveLicenceIssueDate(driveLicenceIssueDate);
         return this;
     }
@@ -271,7 +235,7 @@ public class PersonInfo implements Serializable {
         return this.job;
     }
 
-    public PersonInfo job(String job) {
+    public PersonInfoDTO job(String job) {
         this.setJob(job);
         return this;
     }
@@ -284,7 +248,7 @@ public class PersonInfo implements Serializable {
         return this.fathersFirstName;
     }
 
-    public PersonInfo fathersFirstName(String fathersFirstName) {
+    public PersonInfoDTO fathersFirstName(String fathersFirstName) {
         this.setFathersFirstName(fathersFirstName);
         return this;
     }
@@ -297,7 +261,7 @@ public class PersonInfo implements Serializable {
         return this.motherFirstName;
     }
 
-    public PersonInfo motherFirstName(String motherFirstName) {
+    public PersonInfoDTO motherFirstName(String motherFirstName) {
         this.setMotherFirstName(motherFirstName);
         return this;
     }
@@ -310,7 +274,7 @@ public class PersonInfo implements Serializable {
         return this.photo;
     }
 
-    public PersonInfo photo(byte[] photo) {
+    public PersonInfoDTO photo(byte[] photo) {
         this.setPhoto(photo);
         return this;
     }
@@ -323,7 +287,7 @@ public class PersonInfo implements Serializable {
         return this.photoContentType;
     }
 
-    public PersonInfo photoContentType(String photoContentType) {
+    public PersonInfoDTO photoContentType(String photoContentType) {
         this.photoContentType = photoContentType;
         return this;
     }
@@ -336,7 +300,7 @@ public class PersonInfo implements Serializable {
         return this.wanted;
     }
 
-    public PersonInfo wanted(Boolean wanted) {
+    public PersonInfoDTO wanted(Boolean wanted) {
         this.setWanted(wanted);
         return this;
     }
@@ -352,10 +316,10 @@ public class PersonInfo implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof PersonInfo)) {
+        if (!(o instanceof PersonInfoDTO)) {
             return false;
         }
-        return id != null && id.equals(((PersonInfo) o).id);
+        return id != null && id.equals(((PersonInfoDTO) o).id);
     }
 
     @Override

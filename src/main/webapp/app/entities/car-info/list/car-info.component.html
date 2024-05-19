@@ -116,6 +116,12 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="ownersID">
+            <div class="d-flex">
+              <span>Owner's First and last name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col" jhiSortBy="photo">
             <div class="d-flex">
               <span>Photo</span>
@@ -155,6 +161,7 @@
           <td>{{ carInfo.firstOwner }}</td>
           <td>{{ carInfo.firstOwnerID }}</td>
           <td>{{ carInfo.ownersID }}</td>
+          <td>{{ carInfo.ownersName }}</td>
           <td>
             <a *ngIf="carInfo.photo" (click)="openFile(carInfo.photo, carInfo.photoContentType)">Open</a>
             <span *ngIf="carInfo.photo">{{ carInfo.photoContentType }}, {{ byteSize(carInfo.photo) }}</span>

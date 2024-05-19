@@ -18,6 +18,7 @@ export interface IPersonInfo {
   motherFirstName?: string | null;
   photo?: string | null;
   photoContentType?: string | null;
+  address?: string | null;
   wanted?: boolean | null;
 }
 

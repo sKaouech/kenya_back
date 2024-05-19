@@ -62,6 +62,9 @@ public class CarInfo implements Serializable {
     @Column(name = "owners_id")
     private String ownersID;
 
+    @Column(name = "owners_name")
+    private String ownersName;
+
     @Lob
     @Column(name = "photo")
     private byte[] photo;
@@ -136,6 +139,14 @@ public class CarInfo implements Serializable {
     public CarInfo purchaseDate(LocalDate purchaseDate) {
         this.setPurchaseDate(purchaseDate);
         return this;
+    }
+
+    public String getOwnersName() {
+        return ownersName;
+    }
+
+    public void setOwnersName(String ownersName) {
+        this.ownersName = ownersName;
     }
 
     public void setPurchaseDate(LocalDate purchaseDate) {
